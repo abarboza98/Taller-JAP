@@ -1,10 +1,11 @@
-const url = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+const CARLIST_URL =
+  'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
-fetch(url)
+fetch(CARLIST_URL)
   .then((response) => response.json())
   .then((data) => showProductsList(data));
 
-const showProductsList = (data) => {
+function showProductsList(data) {
   let htmlContentToAppend = '';
 
   for (let i = 0; i < data.products.length; i++) {
@@ -35,15 +36,17 @@ const showProductsList = (data) => {
         </div>
         <small class='text-muted'>` +
       product.soldCount +
-      ` articulos</small>
+      ' ' +
+      'vendidos' +
+      ` </small>
         </div>               
         </div>
         </div>
         </div>          
         `;
-    document.getElementById('listado').innerHTML = htmlContentToAppend;
   }
-};
+  document.getElementById('listado').innerHTML = htmlContentToAppend;
+}
 document.addEventListener('DOMContentLoaded', () => {
   showProductsList();
 });

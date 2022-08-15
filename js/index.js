@@ -22,4 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
   inicioSesion();
+
+  /*CIERRO LA SESION*/
+
+  document
+    .getElementById('cerrarSesion')
+    .addEventListener('click', function () {
+      localStorage.clear();
+    });
 });

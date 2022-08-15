@@ -4,17 +4,37 @@ function Loguearse() {
 
   if (username === '') {
     document.getElementById('user').classList.add('.error');
-    alert('No se admiten campos vacios, Por favor ingrese el usuario.');
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'No se admiten campos vacios, por favor ingrese el usuario',
+      showConfirmButton: true,
+      timer: 3500,
+    });
   } else if (password === '') {
-    alert('No se admiten campos vacios, Por favor ingrese la contraseña.');
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'No se admiten campos vacios, por favor ingrese la contraseña',
+      showConfirmButton: true,
+      timer: 3500,
+    });
   } else {
     localStorage.setItem('user', username);
-    location.href = 'index.html';
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Logueado con exito',
+      showConfirmButton: false,
+      timer: 2500,
+    }).then(function () {
+      location.href = 'index.html';
+    });
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('login').addEventListener('click', () => {
+  document.getElementById('loginBtn').addEventListener('click', () => {
     Loguearse();
   });
 });
