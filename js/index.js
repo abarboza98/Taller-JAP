@@ -19,8 +19,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (username == null) {
       location.href = 'login.html';
+    } else {
+      /*SI HAY UNA CUENTA ABIERTA, MUESTRO EL NOMBRE 
+      DE PERFIL EN LA BARRA DE NAVEGACION */
+
+      document.getElementById('Perfil').innerHTML = `${username}`;
     }
   }
+
   inicioSesion();
 
   /*CIERRO LA SESION*/

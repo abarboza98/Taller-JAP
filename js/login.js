@@ -3,7 +3,6 @@ function Loguearse() {
   let password = document.getElementById('password').value;
 
   if (username === '') {
-    document.getElementById('user').classList.add('.error');
     Swal.fire({
       position: 'center',
       icon: 'error',

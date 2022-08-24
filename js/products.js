@@ -1,12 +1,12 @@
-const CARLIST_URL =
-  'https://japceibal.github.io/emercado-api/cats_products/101.json';
+categorieID = localStorage.getItem('catID');
+const LIST_URL = PRODUCTS_URL + categorieID + EXT_TYPE;
 
 function showProductsList(data) {
   let htmlContentToAppend = '';
 
+  document.getElementById('titleProduct').innerHTML = data.catName;
   for (let i = 0; i < data.products.length; i++) {
     let product = data.products[i];
-
     htmlContentToAppend +=
       `
       <div class='list-group-item list-group-item-action'>
@@ -44,7 +44,7 @@ function showProductsList(data) {
   }
 }
 document.addEventListener('DOMContentLoaded', () => {
-  getJSONData(CARLIST_URL).then(function (resultObj) {
+  getJSONData(LIST_URL).then(function (resultObj) {
     if (resultObj.status === 'ok') {
       const data = resultObj.data;
       showProductsList(data);
