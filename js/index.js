@@ -11,29 +11,4 @@ document.addEventListener('DOMContentLoaded', function () {
     localStorage.setItem('catID', 103);
     window.location = 'products.html';
   });
-
-  /*COMPRUEBO SI HAY UNA SESION INICIADA*/
-
-  function inicioSesion() {
-    let username = localStorage.getItem('user');
-
-    if (username == null) {
-      location.href = 'login.html';
-    } else {
-      /*SI HAY UNA CUENTA ABIERTA, MUESTRO EL NOMBRE 
-      DE PERFIL EN LA BARRA DE NAVEGACION */
-
-      document.getElementById('Perfil').innerHTML = `${username}`;
-    }
-  }
-
-  inicioSesion();
-
-  /*CIERRO LA SESION*/
-
-  document
-    .getElementById('cerrarSesion')
-    .addEventListener('click', function () {
-      localStorage.removeItem('user');
-    });
 });

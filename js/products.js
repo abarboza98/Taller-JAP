@@ -4,7 +4,6 @@ const ORDER_BY_MAX_COST = '9-0';
 const ORDER_BY_MIN_COST = '0-9';
 const ORDER_BY_SOLD_COUNT = 'Cant.';
 let currentProductsArray = [];
-console.log(currentProductsArray);
 const PRODUCT_LIST_URL = PRODUCTS_URL + categorieID + EXT_TYPE;
 currentSortCriteria = undefined;
 let minCost = undefined;
@@ -14,13 +13,7 @@ function sortProducts(criteria, array) {
   let result = [];
   if (criteria === ORDER_BY_MAX_COST) {
     result = array.sort(function (a, b) {
-      if (b.cost < a.cost) {
-        return -1;
-      }
-      if (b.cost > a.cost) {
-        return 1;
-      }
-      return 0;
+      return b.cost - a.cost;
     });
   } else if (criteria === ORDER_BY_MIN_COST) {
     result = array.sort(function (a, b) {
@@ -31,13 +24,7 @@ function sortProducts(criteria, array) {
       let aCount = parseInt(a.soldCount);
       let bCount = parseInt(b.soldCount);
 
-      if (aCount > bCount) {
-        return -1;
-      }
-      if (aCount < bCount) {
-        return 1;
-      }
-      return 0;
+      return bCount - aCount;
     });
   }
 
@@ -53,6 +40,10 @@ function sortAndShowProducts(sortCriteria) {
 
   //Muestro las categorías ordenadas
   showProductsList(currentProductsArray);
+}
+function setProductID(id) {
+  localStorage.setItem('productID', id);
+  window.location = 'product-info.html';
 }
 
 //MUESTRA LA LISTA DE PRODUCTOS
@@ -71,7 +62,7 @@ function showProductsList(dataProducts) {
     ) {
       htmlContentToAppend +=
         `
-      <div class='list-group-item list-group-item-action'>
+      <div onclick="setProductID(${product.id})" class='list-group-item list-group-item-action cursor-active'>
           <div class='row'>
                 <div class='col-3'>
                       <img src='` +
@@ -114,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
       showProductsList(currentProductsArray);
       document.getElementById('titleProduct').innerHTML =
         resultObj.data.catName;
-      console.log(currentProductsArray);
     }
   });
 
