@@ -56,6 +56,10 @@
     </nav>
     <main>
       <div class="container" id="producto"></div>
+      <div id="imgCarousel" class="container"></div>
+      <br />
+      <hr class="container" />
+      <br />
       <div id="comentarios">
         <h2 class="font-weight-bold d-flex w-100 justify-content-center">
           Comentarios
@@ -71,7 +75,6 @@
         <br />
         <label for="puntaje">Tu Puntuacion:</label>
         <select name="puntaje" id="puntaje" class="form-select">
-          <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -80,7 +83,9 @@
         </select>
         <br />
         <br />
-        <button class="btn btn-outline-primary btn-lg">Enviar</button>
+        <button class="btn btn-outline-primary btn-lg" id="sendComment">
+          Enviar
+        </button>
       </div>
     </main>
     <hr class="container" />
@@ -113,5 +118,6 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/product-info.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
