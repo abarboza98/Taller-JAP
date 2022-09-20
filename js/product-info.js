@@ -2,8 +2,28 @@ let productID = localStorage.getItem('productID');
 let INFO_PRODUCT = PRODUCT_INFO_URL + productID + EXT_TYPE;
 let PRODUCT_COMMENTS = PRODUCT_INFO_COMMENTS_URL + productID + EXT_TYPE;
 let currentCommentsList = [];
-//FUNCION QUE MUESTRA NOMBRE, PRECIO, DESCRIPCION, CANTIDAD DE VENDIDOS E IMAGENES DE CADA PRODUCTO
 
+//Funcion que agrega comentarios
+function addComment() {
+  //obtiene la fecha actual
+  const actualDate = new Date();
+  const year = actualDate.getFullYear();
+  const month = actualDate.getMonth() + 1;
+  const day = actualDate.getDate();
+  const hour = actualDate.getHours();
+  const minute = actualDate.getMinutes();
+  const second = actualDate.getSeconds();
+
+  let myComment = {
+    product: localStorage.getItem('productID'),
+    score: document.getElementById('puntaje').value,
+    description: document.getElementById('descripcion').value,
+    user: localStorage.getItem('user'),
+    dateTime: `${year}-${month}-${day} ${hour}:${minute}:${second}`,
+  };
+  currentCommentsList.push(myComment);
+}
+//FUNCION QUE MUESTRA NOMBRE, PRECIO, DESCRIPCION, CANTIDAD DE VENDIDOS E IMAGENES DE CADA PRODUCTO
 function showInfo(dataInfo) {
   let htmlContentToAppend = '';
   htmlContentToAppend += `<div class="container">
@@ -122,29 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //ENVIA LOS COMENTARIOS
 document.getElementById('sendComment').addEventListener('click', () => {
-  //obtiene la fecha actual
-  const actualDate = new Date();
-  const year = actualDate.getFullYear();
-  const month = actualDate.getMonth() + 1;
-  const day = actualDate.getDate();
-  const hour = actualDate.getHours();
-  const minute = actualDate.getMinutes();
-  const second = actualDate.getSeconds();
-
-  let myComment = {
-    product: localStorage.getItem('productID'),
-    score: document.getElementById('puntaje').value,
-    description: document.getElementById('descripcion').value,
-    user: localStorage.getItem('user'),
-    dateTime: `${year}-${month}-${day} ${hour}:${minute}:${second}`,
-  };
-  currentCommentsList.push(myComment);
-
+  addComment();
   Swal.fire({
     icon: 'success',
     text: 'Comentario enviado con exito!',
   });
   showComments(currentCommentsList);
-  document.getElementById('description').value = '';
-  document.getElementById('puntaje').value = 3;
 });
