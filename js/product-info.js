@@ -3,26 +3,12 @@ let INFO_PRODUCT = PRODUCT_INFO_URL + productID + EXT_TYPE;
 let PRODUCT_COMMENTS = PRODUCT_INFO_COMMENTS_URL + productID + EXT_TYPE;
 let currentCommentsList = [];
 
-//Funcion que agrega comentarios
-function addComment() {
-  //obtiene la fecha actual
-  const actualDate = new Date();
-  const year = actualDate.getFullYear();
-  const month = actualDate.getMonth() + 1;
-  const day = actualDate.getDate();
-  const hour = actualDate.getHours();
-  const minute = actualDate.getMinutes();
-  const second = actualDate.getSeconds();
-
-  let myComment = {
-    product: localStorage.getItem('productID'),
-    score: document.getElementById('puntaje').value,
-    description: document.getElementById('descripcion').value,
-    user: localStorage.getItem('user'),
-    dateTime: `${year}-${month}-${day} ${hour}:${minute}:${second}`,
-  };
-  currentCommentsList.push(myComment);
+//FUNCION QUE PARA REDIRIGIR A UN PRODUCTO RELACIONADO
+function setRelatedProductID(id) {
+  localStorage.setItem('productID', id);
+  window.location.reload();
 }
+
 //FUNCION QUE MUESTRA NOMBRE, PRECIO, DESCRIPCION, CANTIDAD DE VENDIDOS E IMAGENES DE CADA PRODUCTO
 function showInfo(dataInfo) {
   let htmlContentToAppend = '';
@@ -89,9 +75,23 @@ function showInfo(dataInfo) {
         </div>
   </div>
           `;
+  // AÑADE PRODUCTOS RELACIONADOS
+  let appendToRelatedProducts = '';
+  for (let item = 0; item < dataInfo.relatedProducts.length; item++) {
+    appendToRelatedProducts += `
+    
+                <div class="container p-2" onclick="setRelatedProductID(${dataInfo.relatedProducts[item].id})">
+                    <img  src="${dataInfo.relatedProducts[item].image}"  class="w-40 img-thumbnail"  >
+                    <h3 class="title">${dataInfo.relatedProducts[item].name}</h3>
+                </div>
+
+                `;
+  }
 
   document.getElementById('imgCarousel').innerHTML = appendImage;
   document.getElementById('producto').innerHTML = htmlContentToAppend;
+  document.getElementById('relatedProduct').innerHTML +=
+    appendToRelatedProducts;
 }
 
 //FUNCION QUE MUESTRA NOMBRE DE USUARIO, CALIFICACION, FECHA Y UNA RESEÑA DE CADA PRODUCTO
@@ -122,7 +122,26 @@ function showComments(dataComments) {
     document.getElementById('comentarios').innerHTML = appendCommentsToHTML;
   }
 }
+//Funcion que agrega comentarios
+function addComment() {
+  //obtiene la fecha actual
+  const actualDate = new Date();
+  const year = actualDate.getFullYear();
+  const month = actualDate.getMonth() + 1;
+  const day = actualDate.getDate();
+  const hour = actualDate.getHours();
+  const minute = actualDate.getMinutes();
+  const second = actualDate.getSeconds();
 
+  let myComment = {
+    product: localStorage.getItem('productID'),
+    score: document.getElementById('puntaje').value,
+    description: document.getElementById('descripcion').value,
+    user: localStorage.getItem('user'),
+    dateTime: `${year}-${month}-${day} ${hour}:${minute}:${second}`,
+  };
+  currentCommentsList.push(myComment);
+}
 document.addEventListener('DOMContentLoaded', () => {
   //PETICIÓN DE LA URL PARA MOSTRAR LOS PRODUCTOS
   getJSONData(INFO_PRODUCT).then(function (resultObj) {
