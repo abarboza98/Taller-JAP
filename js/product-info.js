@@ -16,7 +16,14 @@ function showInfo(dataInfo) {
 <div class="p-4 columns">
 
   <div class="mb-3">
-   <h2 class="font-weight-bold">${dataInfo.name}</h2>
+  <a href="products.html"
+  ><i class="fas fa-angle-left me-2"></i>Volver al
+  lista de Productos</a
+>
+    <div class="d-flex flex-row justify-content-between">
+      <h2 class="font-weight-bold mr-auto p-2">${dataInfo.name}</h2>
+      <button type="button" class="btn btn-outline-success btn-lg p-2 justify-content-end">Comprar</button>
+    </div>
     <hr>
       <h4 class="font-weight-bold">Precio</h4>
    <p>${dataInfo.currency + dataInfo.cost}

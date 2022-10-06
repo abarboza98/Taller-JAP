@@ -14,6 +14,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/cart.css" />
   </head>
 
   <body>
@@ -85,9 +86,117 @@
       </div>
     </nav>
     <main>
-      <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="card shopping-cart" style="border-radius: 15px">
+              <div class="card-body text-black">
+                <div class="row">
+                  <div class="col-lg-6 px-5 py-4">
+                    <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">
+                      MI CARRITO
+                    </h3>
+                    <div class="container" id="agregarArticulo"></div>
+                    <hr
+                      class="mb-4"
+                      style="height: 2px; background-color: #1266f1; opacity: 1"
+                    />
+
+                    <div
+                      class="d-flex justify-content-between p-2 mb-2"
+                      style="background-color: #e1f5fe"
+                    >
+                      <h5 class="fw-bold mb-0">Total:</h5>
+                      <h5 class="fw-bold mb-0">2261$</h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 px-5 py-4">
+                    <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">
+                      direccion del envío
+                    </h3>
+
+                    <div class="mb-5">
+                      <div class="form-outline mb-5">
+                        <input
+                          type="text"
+                          id="calle"
+                          class="form-control form-control-lg"
+                          siez="17"
+                          minlength="19"
+                          maxlength="19"
+                        />
+                        <label class="form-label" for="calle">Calle</label>
+                      </div>
+
+                      <div class="form-outline mb-5">
+                        <input
+                          type="text"
+                          id="nroPuerta"
+                          class="form-control form-control-lg"
+                          siez="17"
+                        />
+                        <label class="form-label" for="nroPuerta">Número</label>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6 mb-5">
+                          <div class="form-outline">
+                            <input
+                              type="text"
+                              id="esquina"
+                              class="form-control form-control-lg"
+                              size="7"
+                              id="exp"
+                              minlength="7"
+                              maxlength="7"
+                            />
+                            <label class="form-label" for="esquina"
+                              >Esquina</label
+                            >
+                          </div>
+                        </div>
+                        <div class="mb-5">
+                          <h2>Tipo de envio</h2>
+                          <select
+                            name="tipEnvio"
+                            id="tipEnvio"
+                            class="form-select"
+                          >
+                            <option value="Premium 2 a 5 dias (15%)">
+                              Premium 2 a 5 dias (15%)
+                            </option>
+                            <option value="Express 5 a 8 dias (7%)">
+                              Express 5 a 8 dias (7%)
+                            </option>
+                            <option value="Standard 12 a 15 dias (5%)">
+                              Standard 12 a 15 dias (5%)
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-block btn-lg"
+                      >
+                        Finalizar Compra
+                      </button>
+
+                      <h5
+                        class="fw-bold mb-5"
+                        style="position: absolute; bottom: 0"
+                      >
+                        <a href="product-info.html"
+                          ><i class="fas fa-angle-left me-2"></i>Volver a
+                          Productos</a
+                        >
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
