@@ -1,11 +1,9 @@
 let CART_URL = CART_INFO_URL + 25801 + EXT_TYPE;
-
-function totalPrice() {
+currentCartArticles = [];
+function totalPriceXAmount(articlePosition) {
   let cantidad =
-    document.getElementsByClassName('quantity')[
-      document.getElementsByClassName('quantity').length - 1
-    ].value;
-  let actualArticle = currentCartArticles[currentCartArticles.length - 1];
+    document.getElementsByClassName('quantity')[articlePosition].value;
+  let actualArticle = currentCartArticles[articlePosition];
   let valorTotal = cantidad * actualArticle.unitCost;
 
   document.getElementById(
@@ -17,7 +15,7 @@ function showCart(articleCart) {
   let htmlContentToAppend = '';
   for (let nroArticulo = 0; nroArticulo < articleCart.length; nroArticulo++) {
     let articulo = articleCart[nroArticulo];
-    htmlContentToAppend = `
+    htmlContentToAppend += `
       
       <div class="d-flex align-items-center mb-5">
                           <div class="flex-shrink-0">
@@ -38,16 +36,16 @@ function showCart(articleCart) {
                               <p class="fw-bold mb-0 me-5 pe-3">${articulo.currency}${articulo.unitCost}</p>
                               <div class="d-flex flex-row">
                               <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown(), totalPrice()">
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown(), totalPriceXAmount(${nroArticulo})">
                                 <i class="fas fa-minus"></i>
                               </button>
           
                               <input id="form1" min="0" name="quantity" value="1" type="number"
                                 class="form-control form-control-sm quantity" style="width: 50px;" 
-                                onchange="totalPrice()" />
+                                onchange="totalPriceXAmount(${nroArticulo})" />
           
                               <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp(), totalPrice()"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp(), totalPriceXAmount(${nroArticulo})"
                                  >
                                 <i class="fas fa-plus"></i>
                                 
@@ -67,9 +65,10 @@ function showCart(articleCart) {
 document.addEventListener('DOMContentLoaded', () => {
   getJSONData(CART_URL).then(function (resultObj) {
     if (resultObj.status === 'ok') {
-      currentCartArticles = resultObj.data.articles;
-
+      // currentCartArticles = resultObj.data.articles;
+      currentCartArticles = JSON.parse(localStorage.getItem('myCart'));
       showCart(currentCartArticles);
+      console.log(currentCartArticles);
     }
   });
 });

@@ -2,6 +2,23 @@ let productID = localStorage.getItem('productID');
 let INFO_PRODUCT = PRODUCT_INFO_URL + productID + EXT_TYPE;
 let PRODUCT_COMMENTS = PRODUCT_INFO_COMMENTS_URL + productID + EXT_TYPE;
 let currentCommentsList = [];
+let currentProductInfo = [];
+let newArticleCart = [];
+
+function addCartProduct(array) {
+  let article = {
+    id: productID,
+    name: array.name,
+    count: 1,
+    unitCost: array.cost,
+    currency: array.currency,
+    image: array.images[0],
+  };
+  newArticleCart.push(article);
+
+  localStorage.setItem('myCart', JSON.stringify(newArticleCart));
+  console.log(newArticleCart);
+}
 
 //FUNCION QUE PARA REDIRIGIR A UN PRODUCTO RELACIONADO
 function setRelatedProductID(id) {
@@ -22,7 +39,7 @@ function showInfo(dataInfo) {
 >
     <div class="d-flex flex-row justify-content-between">
       <h2 class="font-weight-bold mr-auto p-2">${dataInfo.name}</h2>
-      <button type="button" class="btn btn-outline-success btn-lg p-2 justify-content-end">Comprar</button>
+      <button type="button" class="btn btn-outline-success btn-lg p-2 justify-content-end" onclick="addCartProduct(currentProductInfo)">Comprar</button>
     </div>
     <hr>
       <h4 class="font-weight-bold">Precio</h4>
@@ -153,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //PETICIÓN DE LA URL PARA MOSTRAR LOS PRODUCTOS
   getJSONData(INFO_PRODUCT).then(function (resultObj) {
     if (resultObj.status === 'ok') {
-      let currentProductInfo = resultObj.data;
+      currentProductInfo = resultObj.data;
       showInfo(currentProductInfo);
     }
   });
@@ -164,6 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
       showComments(currentCommentsList);
     }
   });
+  newArticleCart = JSON.parse(localStorage.getItem('myCart'));
+  if (newArticleCart === null) {
+    newArticleCart = [];
+  }
 });
 
 //ENVIA LOS COMENTARIOS
