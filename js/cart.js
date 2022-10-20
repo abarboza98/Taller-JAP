@@ -1,20 +1,45 @@
 let CART_URL = CART_INFO_URL + 25801 + EXT_TYPE;
 currentCartArticles = [];
-function totalPriceXAmount(articlePosition) {
-  let cantidad =
-    document.getElementsByClassName('quantity')[articlePosition].value;
-  let actualArticle = currentCartArticles[articlePosition];
-  let valorTotal = cantidad * actualArticle.unitCost;
+let envio = document.getElementById('tipEnvio');
+const dollarPrice = 41;
 
-  document.getElementById(
-    'valorTotal'
-  ).innerHTML = `${actualArticle.currency} ${valorTotal}`;
+//FUNCION QUE CALCULA EL PRECIO TOTAL
+function totalPrice() {
+  let amount = document.getElementsByClassName('quantity');
+  let currencyPrice = document.getElementsByClassName('currencyPrice');
+  let price = document.getElementsByClassName('subtotales');
+  let subtotal = 0;
+  let total = 0;
+  let costoEnvio = 0;
+
+  //RECORRE TODOS LOS PRECIOS DE CADA PRODUCTO
+  for (let i = 0; i < price.length; i++) {
+    //SI EL PRECIO ESTA EN MONEDA URUGUAYA LO CONVIERTE A DOLAR DE LO CONTRARIO LO SUMA AL SUBTOTAl
+    if (currencyPrice[i].innerHTML === 'UYU') {
+      subtotal +=
+        (parseInt(price[i].innerHTML) / dollarPrice) * amount[i].value;
+    } else {
+      subtotal += parseInt(price[i].innerHTML) * amount[i].value;
+    }
+  }
+  //CALCULO EL COSTO DE ENVIO
+  costoEnvio = subtotal * parseFloat(envio.value);
+  //CALCULA EL TOTAL DEL ENVIO MAS EL SUBTOTAL DE CADA PRODUCTO Y SU CANTIDAD
+  total = subtotal + costoEnvio;
+
+  document.getElementById('valorSubtotal').innerHTML = `USD ${subtotal.toFixed(
+    2
+  )}`;
+  document.getElementById('costoEnvio').innerHTML = costoEnvio.toFixed(2);
+  document.getElementById('totalPrice').innerHTML = `USD ${total.toFixed(2)}`;
 }
-
+//FUNCION QUE MUESTRA LOS ARTICULOS DEL CARRITO
 function showCart(articleCart) {
   let htmlContentToAppend = '';
+  let subtotal = 0;
   for (let nroArticulo = 0; nroArticulo < articleCart.length; nroArticulo++) {
     let articulo = articleCart[nroArticulo];
+    subtotal = subtotal + articulo.unitCost;
     htmlContentToAppend += `
       
       <div class="d-flex align-items-center mb-5">
@@ -33,19 +58,19 @@ function showCart(articleCart) {
                             <h5 class="text-primary">${articulo.name}</h5>
     
                             <div class="d-flex align-items-center">
-                              <p class="fw-bold mb-0 me-5 pe-3">${articulo.currency}${articulo.unitCost}</p>
+                              <p class="fw-bold mb-0 me-5 pe-3 "><span class='currencyPrice'>${articulo.currency}</span><span class="subtotales">${articulo.unitCost}</span></p>
                               <div class="d-flex flex-row">
                               <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown(), totalPriceXAmount(${nroArticulo})">
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown(), totalPrice(${nroArticulo})">
                                 <i class="fas fa-minus"></i>
                               </button>
           
                               <input id="form1" min="0" name="quantity" value="1" type="number"
                                 class="form-control form-control-sm quantity" style="width: 50px;" 
-                                onchange="totalPriceXAmount(${nroArticulo})" />
+                                onchange="totalPrice()" />
           
                               <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp(), totalPriceXAmount(${nroArticulo})"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp(), totalPrice(${nroArticulo})"
                                  >
                                 <i class="fas fa-plus"></i>
                                 
@@ -56,10 +81,10 @@ function showCart(articleCart) {
       </div>
       
       `;
-    document.getElementById('valorTotal').innerHTML += articulo.unitCost;
   }
 
   document.getElementById('agregarArticulo').innerHTML += htmlContentToAppend;
+  totalPrice();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -68,7 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // currentCartArticles = resultObj.data.articles;
       currentCartArticles = JSON.parse(localStorage.getItem('myCart'));
       showCart(currentCartArticles);
-      console.log(currentCartArticles);
     }
   });
+});
+envio.addEventListener('change', () => {
+  totalPrice();
 });

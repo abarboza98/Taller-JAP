@@ -17,10 +17,9 @@ function addCartProduct(array) {
   newArticleCart.push(article);
 
   localStorage.setItem('myCart', JSON.stringify(newArticleCart));
-  console.log(newArticleCart);
 }
 
-//FUNCION QUE PARA REDIRIGIR A UN PRODUCTO RELACIONADO
+//FUNCION PARA REDIRIGIR A UN PRODUCTO RELACIONADO
 function setRelatedProductID(id) {
   localStorage.setItem('productID', id);
   window.location.reload();

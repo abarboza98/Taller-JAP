@@ -106,8 +106,15 @@
                       class="d-flex justify-content-between p-2 mb-2"
                       style="background-color: #e1f5fe"
                     >
-                      <h5 class="fw-bold mb-0">Total:</h5>
-                      <h5 class="fw-bold mb-0" id="valorTotal"></h5>
+                      <h5 class="fw-bold mb-0">Subtotal:</h5>
+                      <h5 class="fw-bold mb-0" id="valorSubtotal"></h5>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between p-2 mb-2"
+                      style="background-color: #e1f5fe"
+                    >
+                      <h5 class="fw-bold mb-0">Precio total:</h5>
+                      <h5 class="fw-bold mb-0" id="totalPrice"></h5>
                     </div>
                   </div>
                   <div class="col-lg-6 px-5 py-4">
@@ -162,16 +169,23 @@
                             id="tipEnvio"
                             class="form-select"
                           >
-                            <option value="Premium 2 a 5 dias (15%)">
+                            <option class="tipoEnvio" value="0.15">
                               Premium 2 a 5 dias (15%)
                             </option>
-                            <option value="Express 5 a 8 dias (7%)">
+                            <option class="tipoEnvio" value="0.07">
                               Express 5 a 8 dias (7%)
                             </option>
-                            <option value="Standard 12 a 15 dias (5%)">
+                            <option class="tipoEnvio" value="0.05">
                               Standard 12 a 15 dias (5%)
                             </option>
                           </select>
+                          <div
+                            class="d-flex justify-content-between p-2 mb-2"
+                            style="background-color: #e1f5fe"
+                          >
+                            <h5 class="fw-bold mb-0">Costo de envio:</h5>
+                            <h5 class="fw-bold mb-0" id="costoEnvio"></h5>
+                          </div>
                         </div>
                       </div>
 
