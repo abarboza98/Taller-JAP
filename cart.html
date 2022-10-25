@@ -85,7 +85,9 @@
                     <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">
                       MI CARRITO
                     </h3>
+
                     <div class="container" id="agregarArticulo"></div>
+
                     <hr
                       class="mb-4"
                       style="height: 2px; background-color: #1266f1; opacity: 1"
@@ -106,6 +108,7 @@
                       <h5 class="fw-bold mb-0" id="totalPrice"></h5>
                     </div>
                   </div>
+
                   <div class="col-lg-6 px-5 py-4">
                     <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">
                       direccion del envío
@@ -175,16 +178,178 @@
                             <h5 class="fw-bold mb-0">Costo de envio:</h5>
                             <h5 class="fw-bold mb-0" id="costoEnvio"></h5>
                           </div>
+                          <div class="">
+                            <button
+                              class="btn btn-dark mt-2"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                            >
+                              <i class="far fa-credit-card"></i> Forma de pago
+                            </button>
+                          </div>
+                          <!-- Modal -->
+                          <div
+                            class="modal fade"
+                            id="exampleModal"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1
+                                    class="modal-title fs-5"
+                                    id="exampleModalLabel"
+                                  >
+                                    Forma de pago
+                                  </h1>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                      <h2
+                                        class="accordion-header"
+                                        id="headingOne"
+                                      >
+                                        <button
+                                          class="accordion-button"
+                                          type="button"
+                                          data-bs-toggle="collapse"
+                                          data-bs-target="#collapseOne"
+                                          aria-expanded="true"
+                                          aria-controls="collapseOne"
+                                        >
+                                          Tarjeta de Credito
+                                        </button>
+                                      </h2>
+                                      <div
+                                        id="collapseOne"
+                                        class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne"
+                                        data-bs-parent="#accordionExample"
+                                      >
+                                        <div class="accordion-body">
+                                          <div>
+                                            <div
+                                              class="d-flex justify-content-between align-items-center mb-3"
+                                            >
+                                              <div class="form-outline">
+                                                <label
+                                                  class="form-label"
+                                                  for="typeText"
+                                                  >Número de la tarjeta</label
+                                                >
+                                                <input
+                                                  type="text"
+                                                  id="typeText"
+                                                  class="form-control form-control-lg"
+                                                  siez="17"
+                                                  placeholder="1234 5678 9012 3457"
+                                                  minlength="19"
+                                                  maxlength="19"
+                                                />
+                                              </div>
+                                            </div>
+
+                                            <div
+                                              class="d-flex justify-content-between align-items-center pb-2"
+                                            >
+                                              <div class="form-outline">
+                                                <label
+                                                  class="form-label"
+                                                  for="typeExp"
+                                                  >Fecha de Vencimiento
+                                                  (MM/AA)</label
+                                                >
+                                                <input
+                                                  type="text"
+                                                  id="typeExp"
+                                                  class="form-control form-control-lg"
+                                                  placeholder="MM/YY"
+                                                  size="5"
+                                                  id="exp"
+                                                  minlength="5"
+                                                  maxlength="5"
+                                                />
+                                              </div>
+                                              <div class="form-outline">
+                                                <label
+                                                  class="form-label"
+                                                  for="typeText2"
+                                                  >Codigo de seguridad</label
+                                                >
+                                                <input
+                                                  type="password"
+                                                  id="typeText2"
+                                                  class="form-control form-control-lg"
+                                                  placeholder="&#9679;&#9679;&#9679;"
+                                                  size="1"
+                                                  minlength="3"
+                                                  maxlength="3"
+                                                />
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                      <h2
+                                        class="accordion-header"
+                                        id="headingTwo"
+                                      >
+                                        <button
+                                          class="accordion-button collapsed"
+                                          type="button"
+                                          data-bs-toggle="collapse"
+                                          data-bs-target="#collapseTwo"
+                                          aria-expanded="false"
+                                          aria-controls="collapseTwo"
+                                        >
+                                          Transferencia bancaria
+                                        </button>
+                                      </h2>
+
+                                      <div
+                                        id="collapseTwo"
+                                        class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo"
+                                        data-bs-parent="#accordionExample"
+                                      >
+                                        <div class="accordion-body">
+                                          <label
+                                            class="form-label mt-2"
+                                            for="transferenciaBanco"
+                                            >Numero de cuenta</label
+                                          >
+                                          <input
+                                            type="text"
+                                            id="transferenciaBanco"
+                                            class="form-control form-control-lg"
+                                            placeholder="XXXXXXXXXXXXXXXX"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-primary">
+                                    Guardar Cambios
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-
-                      <button
-                        type="button"
-                        class="btn btn-primary btn-block btn-lg"
-                      >
-                        Finalizar Compra
-                      </button>
-
                       <h5
                         class="fw-bold mb-5"
                         style="position: absolute; bottom: 0"
@@ -194,6 +359,17 @@
                           Productos</a
                         >
                       </h5>
+
+                      <div>
+                        <div>
+                          <button
+                            type="button"
+                            class="btn btn-primary btn-block btn-lg"
+                          >
+                            Finalizar Compra
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -30,7 +30,9 @@ function totalPrice() {
   document.getElementById('valorSubtotal').innerHTML = `USD ${subtotal.toFixed(
     2
   )}`;
-  document.getElementById('costoEnvio').innerHTML = costoEnvio.toFixed(2);
+  document.getElementById('costoEnvio').innerHTML = `USD ${costoEnvio.toFixed(
+    2
+  )}`;
   document.getElementById('totalPrice').innerHTML = `USD ${total.toFixed(2)}`;
 }
 //FUNCION QUE MUESTRA LOS ARTICULOS DEL CARRITO
@@ -56,26 +58,27 @@ function showCart(articleCart) {
                               ><i class="fas fa-times"></i
                             ></a>
                             <h5 class="text-primary">${articulo.name}</h5>
-    
-                            <div class="d-flex align-items-center">
-                              <p class="fw-bold mb-0 me-5 pe-3 "><span class='currencyPrice'>${articulo.currency}</span><span class="subtotales">${articulo.unitCost}</span></p>
-                              <div class="d-flex flex-row">
-                              <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown(), totalPrice(${nroArticulo})">
-                                <i class="fas fa-minus"></i>
-                              </button>
+                            <div class="row">
+                              <div class="container col-sm-12">
+                                <p class="fw-bold mb-0 me-5 pe-3 "><span class='currencyPrice'>${articulo.currency}</span><span class="subtotales">${articulo.unitCost}</span></p>
+                                <div class="d-flex flex-row">
+                                  <button class="btn btn-link px-2"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown(), totalPrice()">
+                                    <i class="fas fa-minus"></i>
+                                  </button>
           
-                              <input id="form1" min="0" name="quantity" value="1" type="number"
-                                class="form-control form-control-sm quantity" style="width: 50px;" 
-                                onchange="totalPrice()" />
+                                  <input id="form1" min="0" name="quantity" value="1" type="number"
+                                  class="form-control form-control-sm quantity" style="width: 50px;" 
+                                  onchange="totalPrice()" />
           
-                              <button class="btn btn-link px-2"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp(), totalPrice(${nroArticulo})"
-                                 >
-                                <i class="fas fa-plus"></i>
+                                  <button class="btn btn-link px-2"
+                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp(), totalPrice()"
+                                    >
+                                    <i class="fas fa-plus"></i>
                                 
-                              </button>
-                            </div>
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
       </div>

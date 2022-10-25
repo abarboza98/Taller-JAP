@@ -38,7 +38,7 @@ function showInfo(dataInfo) {
 >
     <div class="d-flex flex-row justify-content-between">
       <h2 class="font-weight-bold mr-auto p-2">${dataInfo.name}</h2>
-      <button type="button" class="btn btn-outline-success btn-lg p-2 justify-content-end" onclick="addCartProduct(currentProductInfo)">Comprar</button>
+      <button type="button" class="btn btn-outline-warning btn-lg p-2 justify-content-end" onclick="addCartProduct(currentProductInfo)"><i class="fas fa-shopping-cart"></i> Añadir al carrito</button>
     </div>
     <hr>
       <h4 class="font-weight-bold">Precio</h4>
