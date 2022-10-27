@@ -90,6 +90,8 @@ function showCart(articleCart) {
   totalPrice();
 }
 
+function validation() {}
+
 document.addEventListener('DOMContentLoaded', () => {
   getJSONData(CART_URL).then(function (resultObj) {
     if (resultObj.status === 'ok') {
@@ -101,4 +103,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 envio.addEventListener('change', () => {
   totalPrice();
+});
+
+document.getElementById('btnTarjeta').addEventListener('click', () => {
+  document.getElementById('nTarjeta').disabled = false;
+  document.getElementById('fecNam').disabled = false;
+  document.getElementById('CVV').disabled = false;
+  document.getElementById('transferenciaBanco').disabled = true;
+});
+
+document.getElementById('btnTransferencia').addEventListener('click', () => {
+  document.getElementById('transferenciaBanco').disabled = false;
+  document.getElementById('nTarjeta').disabled = true;
+  document.getElementById('fecNam').disabled = true;
+  document.getElementById('CVV').disabled = true;
 });
