@@ -39,8 +39,8 @@ function totalPrice() {
 function showCart(articleCart) {
   let htmlContentToAppend = '';
   let subtotal = 0;
-  for (let nroArticulo = 0; nroArticulo < articleCart.length; nroArticulo++) {
-    let articulo = articleCart[nroArticulo];
+  for (let nroItem = 0; nroItem < articleCart.length; nroItem++) {
+    let articulo = articleCart[nroItem];
     subtotal = subtotal + articulo.unitCost;
     htmlContentToAppend += `
       
@@ -67,7 +67,7 @@ function showCart(articleCart) {
                                     <i class="fas fa-minus"></i>
                                   </button>
           
-                                  <input id="form1" min="0" name="quantity" value="1" type="number"
+                                  <input id="form1" min="1" name="quantity" value="1" type="number"
                                   class="form-control form-control-sm quantity" style="width: 50px;" 
                                   onchange="totalPrice()" />
           
@@ -90,7 +90,16 @@ function showCart(articleCart) {
   totalPrice();
 }
 
-function validation() {}
+function validation() {
+  let calle = document.getElementById('calle');
+  let nroPuerta = document.getElementById('nroPuerta');
+  let esquina = document.getElementById('esquina');
+  let intputTransferencia = document.getElementById('transferenciaBanco');
+  let numeroTarjeta = document.getElementById('nTarjeta');
+  let fechaNacimiento = document.getElementById('fecNam');
+  let codigoSeguridad = document.getElementById('CVV');
+  let isValidate = true;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   getJSONData(CART_URL).then(function (resultObj) {
@@ -110,6 +119,10 @@ document.getElementById('btnTarjeta').addEventListener('click', () => {
   document.getElementById('fecNam').disabled = false;
   document.getElementById('CVV').disabled = false;
   document.getElementById('transferenciaBanco').disabled = true;
+  document.getElementById('nTarjeta').required = true;
+  document.getElementById('fecNam').required = true;
+  document.getElementById('CVV').required = true;
+  document.getElementById('transferenciaBanco').required = false;
 });
 
 document.getElementById('btnTransferencia').addEventListener('click', () => {
@@ -117,4 +130,12 @@ document.getElementById('btnTransferencia').addEventListener('click', () => {
   document.getElementById('nTarjeta').disabled = true;
   document.getElementById('fecNam').disabled = true;
   document.getElementById('CVV').disabled = true;
+  document.getElementById('nTarjeta').required = false;
+  document.getElementById('fecNam').required = false;
+  document.getElementById('CVV').required = false;
+  document.getElementById('transferenciaBanco').required = true;
+});
+
+document.getElementById('btnFinalizarCompra').addEventListener('click', () => {
+  validation();
 });

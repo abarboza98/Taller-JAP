@@ -109,7 +109,7 @@
                     </div>
                   </div>
 
-                  <div class="col-lg-6 px-5 py-4">
+                  <form class="col-lg-6 px-5 py-4 needs-validation" novalidate>
                     <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">
                       direccion del envío
                     </h3>
@@ -161,14 +161,14 @@
                             id="tipEnvio"
                             class="form-select"
                           >
-                            <option class="tipoEnvio" value="0.15">
-                              Premium 2 a 5 dias (15%)
+                            <option class="tipoEnvio" value="0.05">
+                              Standard 12 a 15 dias (5%)
                             </option>
                             <option class="tipoEnvio" value="0.07">
                               Express 5 a 8 dias (7%)
                             </option>
-                            <option class="tipoEnvio" value="0.05">
-                              Standard 12 a 15 dias (5%)
+                            <option class="tipoEnvio" value="0.15">
+                              Premium 2 a 5 dias (15%)
                             </option>
                           </select>
                           <div
@@ -179,13 +179,14 @@
                             <h5 class="fw-bold mb-0" id="costoEnvio"></h5>
                           </div>
                           <div class="">
-                            <button
+                            <a
+                              href="#"
                               class="btn btn-dark mt-2"
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
                             >
                               <i class="far fa-credit-card"></i> Forma de pago
-                            </button>
+                            </a>
                           </div>
                           <!-- Modal -->
                           <div
@@ -365,15 +366,16 @@
                       <div>
                         <div>
                           <button
-                            type="button"
+                            type="submit"
                             class="btn btn-primary btn-block btn-lg"
+                            id="btnFinalizarCompra"
                           >
                             Finalizar Compra
                           </button>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
