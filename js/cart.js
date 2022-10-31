@@ -96,9 +96,17 @@ function validation() {
   let esquina = document.getElementById('esquina');
   let intputTransferencia = document.getElementById('transferenciaBanco');
   let numeroTarjeta = document.getElementById('nTarjeta');
-  let fechaNacimiento = document.getElementById('fecNam');
+  let fechaVenc = document.getElementById('fecNam');
+  let dateRegExpression = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
   let codigoSeguridad = document.getElementById('CVV');
   let isValidate = true;
+
+  if (dateRegExpression.test(fechaVenc.value)) {
+    fechaVenc.setCustomValidity('');
+  } else {
+    fechaVenc.setCustomValidity(false);
+    isValidate = false;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -136,6 +144,22 @@ document.getElementById('btnTransferencia').addEventListener('click', () => {
   document.getElementById('transferenciaBanco').required = true;
 });
 
-document.getElementById('btnFinalizarCompra').addEventListener('click', () => {
-  validation();
+document.getElementById('formulario').addEventListener('submit', function (e) {
+  if (!validation() || !this.checkValidity()) {
+    e.preventDefault();
+    e.stopPropagation();
+  } else {
+    e.preventDefault();
+    e.stopPropagation();
+    Swal.fire({
+      title: 'Registro Correcto',
+      icon: 'success',
+      timer: 1500,
+      showConfirmButton: false,
+    }).then(() => {
+      window.location = 'cart.html';
+    });
+  }
+
+  document.body.classList.add('was-validated');
 });
