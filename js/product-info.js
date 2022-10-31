@@ -5,6 +5,7 @@ let currentCommentsList = [];
 let currentProductInfo = [];
 let newArticleCart = [];
 
+//FUNCION QUE AÑADE UN PRODUCTO AL CARRITO
 function addCartProduct(array) {
   let article = {
     id: productID,
