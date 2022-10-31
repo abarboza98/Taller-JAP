@@ -165,18 +165,18 @@ document.getElementById('formulario').addEventListener('submit', function (e) {
   if (!validation() || !this.checkValidity()) {
     e.preventDefault();
     e.stopPropagation();
-  } else {
-    e.preventDefault();
-    e.stopPropagation();
+  }
+  document.body.classList.add('was-validated');
+});
+document.getElementById('btnFinalizarCompra').addEventListener('click', () => {
+  if (document.getElementById('formulario').checkValidity()) {
     Swal.fire({
-      title: 'Registro Correcto',
+      title: 'Compra finalizada',
       icon: 'success',
-      timer: 1500,
+      timer: 2000,
       showConfirmButton: false,
     }).then(() => {
       window.location = 'cart.html';
     });
   }
-
-  document.body.classList.add('was-validated');
 });

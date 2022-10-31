@@ -16,6 +16,14 @@ function addCartProduct(array) {
     image: array.images[0],
   };
   newArticleCart.push(article);
+  Swal.fire({
+    title: 'Añadiendo al carrito',
+    icon: 'success',
+    timer: 2000,
+    showConfirmButton: false,
+  }).then(() => {
+    window.location = 'product-info.html';
+  });
 
   localStorage.setItem('myCart', JSON.stringify(newArticleCart));
 }
