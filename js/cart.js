@@ -119,11 +119,10 @@ function validation() {
 }
 //FUNCION QUE REMUEVE UN PRODUCTO DEL CARRITO
 function removeItem(item) {
-  localStorage.setItem(
-    'myCart',
-    JSON.stringify(currentCartArticles.splice(item, 1))
-  );
+  currentCartArticles.splice(item, 1);
+  localStorage.setItem('myCart', JSON.stringify(currentCartArticles));
   showCart(currentCartArticles);
+  window.location = 'cart.html';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
