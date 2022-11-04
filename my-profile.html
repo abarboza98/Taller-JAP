@@ -91,8 +91,132 @@
 
     <main>
       <div class="container">
-        <div class="alert alert-danger text-center" role="alert">
-          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+        <div class="mt-5"><h2 class="font-weight-bold">Mi Perfil</h2></div>
+        <hr />
+        <div class="row">
+          <div class="col-md-6 mt-3">
+            <!--MODAL TRIGGER-->
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Editar Perfil
+            </button>
+
+            <!--MODAL-->
+
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Mi Perfil
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container row">
+                      <div class="col-md-6 form-outline mt-2 mb-2">
+                        <label for="primerNombre" class="form-label"
+                          >Primer Nombre</label
+                        >
+                        <input
+                          type="text"
+                          name="primerNombre"
+                          class="form-control form-control-lg"
+                          id="firstName"
+                        />
+                      </div>
+                      <div class="col-md-6 form-outline mt-2 mb-2">
+                        <label for="segundoNombre" class="form-label"
+                          >Segundo Nombre</label
+                        >
+                        <input
+                          type="text"
+                          name="segundoNombre"
+                          class="form-control form-control-lg"
+                          id="secondName"
+                        />
+                      </div>
+                      <div class="col-md-6 form-outline mt-2 mb-2">
+                        <label for="primerApellido" class="form-label"
+                          >Primer Apellido</label
+                        >
+                        <input
+                          type="text"
+                          name="primerApellido"
+                          class="form-control form-control-lg"
+                          id="primerApellido"
+                        />
+                      </div>
+                      <div class="col-md-6 form-outline mt-2 mb-2">
+                        <label for="segundoApellido" class="form-label"
+                          >Segundo Apellido</label
+                        >
+                        <input
+                          type="text"
+                          name="segundoApellido"
+                          class="form-control form-control-lg"
+                          id="segundoApellido"
+                        />
+                      </div>
+                      <div class="col-md-12 form-outline mt-2 mb-2">
+                        <label for="email" class="form-label">Email</label>
+                        <input
+                          type="email"
+                          name="email"
+                          class="form-control form-control-lg"
+                          id="email"
+                        />
+                      </div>
+                      <div class="col-md-6 form-outline mt-2 mb-2">
+                        <label for="Usuario" class="form-label">Usuario</label>
+                        <input
+                          type="text"
+                          name="Usuario"
+                          class="form-control form-control-lg"
+                          id="Usuario"
+                        />
+                      </div>
+                      <div class="col-md-6 form-outline mt-2 mb-2">
+                        <label for="numeroContacto" class="form-label"
+                          >Numero de Contacto</label
+                        >
+                        <input
+                          type="number"
+                          name="numeroContacto"
+                          class="form-control form-control-lg"
+                          id="numeroContacto"
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-dismiss="modal"
+                      >
+                        Guardar Cambios
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
