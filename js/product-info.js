@@ -18,7 +18,7 @@ function addCartProduct(array) {
   newArticleCart.push(article);
   Swal.fire({
     title: 'Añadiendo al carrito',
-    icon: 'success',
+    html: '<iframe src="https://embed.lottiefiles.com/animation/114597"></iframe>',
     timer: 2000,
     showConfirmButton: false,
   }).then(() => {
