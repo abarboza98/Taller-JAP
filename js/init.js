@@ -53,6 +53,7 @@ function inicioSesion() {
     DE PERFIL EN LA BARRA DE NAVEGACION */
 
     document.getElementById('Perfil').innerHTML = `${username}`;
+    document.getElementById('nameUser').innerHTML = `${username}`;
   }
 }
 
