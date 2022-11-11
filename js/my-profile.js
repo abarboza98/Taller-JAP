@@ -44,16 +44,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('formProfile').checkValidity()) {
       editProfile();
 
-      primerNombre.innerHTML = localStorage.getItem('pNombre');
-      segundoNombre.innerHTML = localStorage.getItem('sNombre');
-      primerApellido.innerHTML = localStorage.getItem('pApellido');
-      segundoApellido.innerHTML = localStorage.getItem('sApellido');
-      email.innerHTML = localStorage.getItem('email');
+      document.getElementById('primerNombreValue').innerHTML =
+        localStorage.getItem('pNombre');
+      document.getElementById('segundoNombreValue').innerHTML =
+        localStorage.getItem('sNombre');
+      document.getElementById('primerApellidoValue').innerHTML =
+        localStorage.getItem('pApellido');
+      document.getElementById('segundoApellidoValue').innerHTML =
+        localStorage.getItem('sApellido');
+      document.getElementById('emailValue').innerHTML =
+        localStorage.getItem('email');
 
-      numeroContacto.innerHTML = localStorage.getItem('nroContacto');
-      imagenUser.innerHTML = localStorage.getItem('imgUser');
-
-      window.location = 'my-profile.html';
+      document.getElementById('nroContactoValue').innerHTML =
+        localStorage.getItem('nroContacto');
+      /*document.getElementById('img-perfil').src =
+        localStorage.getItem('imgUser');*/
     }
   });
 });
