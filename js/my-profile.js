@@ -18,7 +18,24 @@ function verifiedProfile() {
     isValid = false;
   }
 }
+function getProfile() {
+  document.getElementById('primerNombreValue').innerHTML =
+    localStorage.getItem('pNombre');
+  document.getElementById('segundoNombreValue').innerHTML =
+    localStorage.getItem('sNombre');
+  document.getElementById('primerApellidoValue').innerHTML =
+    localStorage.getItem('pApellido');
+  document.getElementById('segundoApellidoValue').innerHTML =
+    localStorage.getItem('sApellido');
+  document.getElementById('emailValue').innerHTML =
+    localStorage.getItem('email');
 
+  document.getElementById('nroContactoValue').innerHTML =
+    localStorage.getItem('nroContacto');
+  document.getElementById('nameUser').innerHTML = localStorage.getItem('user');
+  /*document.getElementById('img-perfil').src =
+  localStorage.getItem('imgUser');*/
+}
 function editProfile() {
   localStorage.setItem('pNombre', primerNombre.value);
   localStorage.setItem('sNombre', segundoNombre.value);
@@ -27,9 +44,15 @@ function editProfile() {
   localStorage.setItem('email', email.value);
   localStorage.setItem('nroContacto', numeroContacto.value);
   localStorage.setItem('imgUser', imagenUser.value);
+
+  if (usuario.value != '' && usuario.value != localStorage.getItem('user')) {
+    localStorage.setItem('user', usuario.value);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  getProfile();
+
   document
     .getElementById('formProfile')
     .addEventListener('submit', function (e) {
@@ -37,28 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         e.stopPropagation();
       }
+
       document.body.classList.add('was-validated');
     });
 
   document.getElementById('guardarPerfil').addEventListener('click', () => {
     if (document.getElementById('formProfile').checkValidity()) {
       editProfile();
-
-      document.getElementById('primerNombreValue').innerHTML =
-        localStorage.getItem('pNombre');
-      document.getElementById('segundoNombreValue').innerHTML =
-        localStorage.getItem('sNombre');
-      document.getElementById('primerApellidoValue').innerHTML =
-        localStorage.getItem('pApellido');
-      document.getElementById('segundoApellidoValue').innerHTML =
-        localStorage.getItem('sApellido');
-      document.getElementById('emailValue').innerHTML =
-        localStorage.getItem('email');
-
-      document.getElementById('nroContactoValue').innerHTML =
-        localStorage.getItem('nroContacto');
-      /*document.getElementById('img-perfil').src =
-        localStorage.getItem('imgUser');*/
+      getProfile();
     }
   });
 });

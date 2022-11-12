@@ -53,14 +53,14 @@ function inicioSesion() {
     DE PERFIL EN LA BARRA DE NAVEGACION */
 
     document.getElementById('Perfil').innerHTML = `${username}`;
-    document.getElementById('nameUser').innerHTML = `${username}`;
   }
 }
-
-inicioSesion();
+document.addEventListener('DOMContentLoaded', () => {
+  inicioSesion();
+});
 
 /*CIERRO LA SESION*/
 
 document.getElementById('cerrarSesion').addEventListener('click', function () {
-  localStorage.removeItem('user');
+  localStorage.clear();
 });
