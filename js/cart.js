@@ -130,6 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (resultObj.status === 'ok') {
       // currentCartArticles = resultObj.data.articles;
       currentCartArticles = JSON.parse(localStorage.getItem('myCart'));
+
+      //SI NO HAY PRODUCTOS PRECARGADOS EN EL CARRITO MUESTRO UNA ALERTA Y DESHABILITO EL BOTON DE FINALIZAR LA COMPRA
+      if (
+        localStorage.getItem('myCart') === null ||
+        currentCartArticles.length <= 0
+      ) {
+        document.getElementById('alert-error').classList.add('show');
+        document.getElementById('btnFinalizarCompra').disabled = true;
+      } else {
+        document.getElementById('alert-error').classList.add('d-none');
+        document.getElementById('btnFinalizarCompra').disabled = false;
+      }
+
+      
       showCart(currentCartArticles);
     }
   });
