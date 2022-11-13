@@ -14,10 +14,25 @@ function verifiedProfile() {
   if (emailRegex.test(campo.value)) {
     email.setCustomValidity('');
   } else {
-    email.setCustomValidity(false);
     isValid = false;
+    email.setCustomValidity(false);
+  }
+  return isValid;
+}
+
+function editProfile() {
+  localStorage.setItem('pNombre', primerNombre.value);
+  localStorage.setItem('sNombre', segundoNombre.value);
+  localStorage.setItem('pApellido', primerApellido.value);
+  localStorage.setItem('sApellido', segundoApellido.value);
+  localStorage.setItem('email', email.value);
+  localStorage.setItem('nroContacto', numeroContacto.value);
+
+  if (usuario.value != '' && usuario.value != localStorage.getItem('user')) {
+    localStorage.setItem('user', usuario.value);
   }
 }
+
 function getProfile() {
   document.getElementById('primerNombreValue').innerHTML =
     localStorage.getItem('pNombre');
@@ -32,26 +47,29 @@ function getProfile() {
 
   document.getElementById('nroContactoValue').innerHTML =
     localStorage.getItem('nroContacto');
-  document.getElementById('nameUser').innerHTML = localStorage.getItem('user');
-  /*document.getElementById('img-perfil').src =
-  localStorage.getItem('imgUser');*/
-}
-function editProfile() {
-  localStorage.setItem('pNombre', primerNombre.value);
-  localStorage.setItem('sNombre', segundoNombre.value);
-  localStorage.setItem('pApellido', primerApellido.value);
-  localStorage.setItem('sApellido', segundoApellido.value);
-  localStorage.setItem('email', email.value);
-  localStorage.setItem('nroContacto', numeroContacto.value);
-  localStorage.setItem('imgUser', imagenUser.value);
 
-  if (usuario.value != '' && usuario.value != localStorage.getItem('user')) {
-    localStorage.setItem('user', usuario.value);
-  }
+  document.getElementById('nameUser').innerHTML = localStorage.getItem('user');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   getProfile();
+
+  imagenUser.addEventListener('change', () => {
+    let imgSelected = imagenUser.files;
+
+    if (imgSelected.length > 0) {
+      let imgToB64 = imgSelected[0];
+      let fileReader = new FileReader();
+
+      fileReader.onload = function (event) {
+        let b64Data = event.target.result;
+
+        document.getElementById('img-perfil').src = b64Data;
+      };
+
+      fileReader.readAsDataURL(imgToB64);
+    }
+  });
 
   document
     .getElementById('formProfile')
@@ -68,6 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('formProfile').checkValidity()) {
       editProfile();
       getProfile();
+      Swal.fire({
+        title: 'Cambios guardados',
+        icon: 'success',
+        timer: 2500,
+        showConfirmButton: false,
+      }).then(() => {
+        window.location = 'my-profile.html';
+      });
     }
   });
 });
