@@ -1,3 +1,4 @@
+//DECLARACION DE VARIABLES
 let primerNombre = document.getElementById('firstName');
 let segundoNombre = document.getElementById('secondName');
 let primerApellido = document.getElementById('primerApellido');
@@ -7,6 +8,7 @@ let usuario = document.getElementById('usuario');
 let numeroContacto = document.getElementById('numeroContacto');
 let imagenUser = document.getElementById('imagenPerfil');
 
+//FUNCION QUE VERIFICA QUE EL EMAIL SEA VALIDO
 function verifiedProfile() {
   let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   let isValid = true;
@@ -20,6 +22,7 @@ function verifiedProfile() {
   return isValid;
 }
 
+//FUNCION QUE GUARDA LOS DATOS EN LOCAL STORAGE
 function editProfile() {
   let imgSelected = imagenUser.files;
   localStorage.setItem('pNombre', primerNombre.value);
@@ -29,6 +32,7 @@ function editProfile() {
   localStorage.setItem('email', email.value);
   localStorage.setItem('nroContacto', numeroContacto.value);
 
+  //CONVIERTE IMAGEN A BASE 64
   if (imgSelected.length > 0) {
     let imgToB64 = imgSelected[0];
     let fileReader = new FileReader();
@@ -43,11 +47,13 @@ function editProfile() {
     fileReader.readAsDataURL(imgToB64);
   }
 
+  //SI NO ESTA VACIO Y SI EL USUARIO CAMBIO SU NOMBRE  DE USUARIO ES REMPLAZADO
   if (usuario.value != '' && usuario.value != localStorage.getItem('user')) {
     localStorage.setItem('user', usuario.value);
   }
 }
 
+//OBTENGO LOS DATOS DEL LOCAL STORAGE PARA MOSTRAR
 function getProfile() {
   document.getElementById('primerNombreValue').innerHTML =
     localStorage.getItem('pNombre');
@@ -65,6 +71,7 @@ function getProfile() {
 
   document.getElementById('nameUser').innerHTML = localStorage.getItem('user');
 
+  //SI EL USUARIO AUN NO CAMBIO LA IMAGEN DE PERFIL MUESTRO UNA POR DEFECTO
   if (localStorage.getItem('imgUser') === null) {
     document.getElementById('img-perfil').src = '/img/img_perfil.png';
   } else {
@@ -75,8 +82,7 @@ function getProfile() {
 document.addEventListener('DOMContentLoaded', () => {
   getProfile();
 
-  imagenUser.addEventListener('change', () => {});
-
+  //ME VALIDA QUE EL USUARIO HAYA LLENADO LOS CAMPOS OBLIGATORIOS (*) AL DARLE EDITAR PERFIL
   document
     .getElementById('formProfile')
     .addEventListener('submit', function (e) {
@@ -89,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   document.getElementById('guardarPerfil').addEventListener('click', () => {
+    // SI LA VALIDACION FUE BUENA HACE LOS CAMBIOS
     if (document.getElementById('formProfile').checkValidity()) {
       editProfile();
       getProfile();
