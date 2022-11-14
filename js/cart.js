@@ -13,8 +13,8 @@ function showCart(articleCart) {
     subtotal = subtotal + articulo.unitCost;
     htmlContentToAppend += `
       
-      <div class="d-flex align-items-center mb-5">
-                          <div class="flex-shrink-0">
+      <div class="d-flex align-items-center mb-5 row">
+                          <div class="flex-shrink-0 col-sm mb-2">
                             <img
                               src="${articulo.image}"
                               class="img-fluid img-thumbnail"
@@ -22,8 +22,8 @@ function showCart(articleCart) {
                               alt="Generic placeholder image"
                             />
                           </div>
-                          <div class="flex-grow-1 ms-3">
-                            <button class="btn float-end text-black btnBorrar"
+                          <div class="flex-grow-1 ms-3 col-sm">
+                            <button class="btn float-end text-black col-sm btnBorrar"
                               ><i class="fas fa-times"></i
                             ></button>
                             <h5 class="text-primary">${articulo.name}</h5>
@@ -51,6 +51,7 @@ function showCart(articleCart) {
                             </div>
                           </div>
       </div>
+      
       
       `;
   }
@@ -143,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('btnFinalizarCompra').disabled = false;
       }
 
-      
       showCart(currentCartArticles);
     }
   });
