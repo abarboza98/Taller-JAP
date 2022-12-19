@@ -59,7 +59,7 @@ function inicioSesion() {
     /*SI HAY UNA CUENTA ABIERTA, MUESTRO EL NOMBRE 
     DE PERFIL EN LA BARRA DE NAVEGACION */
 
-    document.getElementById('Perfil').innerHTML = `${username}`;
+    document.querySelector('#Perfil').innerHTML = `${username}`;
   }
 }
 document.addEventListener('DOMContentLoaded', () => {

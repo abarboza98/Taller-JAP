@@ -1,6 +1,6 @@
 let CART_URL = CART_INFO_URL + 25801 + EXT_TYPE;
 currentCartArticles = [];
-let envio = document.getElementById('tipEnvio');
+let envio = document.querySelector('#tipEnvio');
 const dollarPrice = 41;
 let btnBorrar = document.getElementsByClassName('btnBorrar');
 
@@ -56,7 +56,7 @@ function showCart(articleCart) {
       `;
   }
 
-  document.getElementById('agregarArticulo').innerHTML += htmlContentToAppend;
+  document.querySelector('#agregarArticulo').innerHTML += htmlContentToAppend;
   totalPrice();
 
   for (let i = 0; i < btnBorrar.length; i++) {

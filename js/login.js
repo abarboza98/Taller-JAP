@@ -1,6 +1,6 @@
 function Loguearse() {
-  let username = document.getElementById('user').value;
-  let password = document.getElementById('password').value;
+  let username = document.querySelector('#user').value;
+  let password = document.querySelector('#password').value;
 
   if (username === '') {
     Swal.fire({
@@ -33,7 +33,7 @@ function Loguearse() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('loginBtn').addEventListener('click', () => {
+  document.querySelector('#loginBtn').addEventListener('click', () => {
     Loguearse();
   });
 });

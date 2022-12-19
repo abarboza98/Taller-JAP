@@ -1,12 +1,12 @@
 //DECLARACION DE VARIABLES
-let primerNombre = document.getElementById('firstName');
-let segundoNombre = document.getElementById('secondName');
-let primerApellido = document.getElementById('primerApellido');
-let segundoApellido = document.getElementById('segundoApellido');
-let email = document.getElementById('email');
-let usuario = document.getElementById('usuario');
-let numeroContacto = document.getElementById('numeroContacto');
-let imagenUser = document.getElementById('imagenPerfil');
+let primerNombre = document.querySelector('#firstName');
+let segundoNombre = document.querySelector('#secondName');
+let primerApellido = document.querySelector('#primerApellido');
+let segundoApellido = document.querySelector('#segundoApellido');
+let email = document.querySelector('#email');
+let usuario = document.querySelector('#usuario');
+let numeroContacto = document.querySelector('#numeroContacto');
+let imagenUser = document.querySelector('#imagenPerfil');
 
 //FUNCION QUE VERIFICA QUE EL EMAIL SEA VALIDO
 function verifiedProfile() {
@@ -40,7 +40,7 @@ function editProfile() {
     fileReader.onload = function (event) {
       let b64Data = event.target.result;
 
-      document.getElementById('img-perfil').src = b64Data;
+      document.querySelector('#img-perfil').src = b64Data;
       localStorage.setItem('imgUser', b64Data);
     };
 
@@ -55,27 +55,27 @@ function editProfile() {
 
 //OBTENGO LOS DATOS DEL LOCAL STORAGE PARA MOSTRAR
 function getProfile() {
-  document.getElementById('primerNombreValue').innerHTML =
+  document.querySelector('#primerNombreValue').innerHTML =
     localStorage.getItem('pNombre');
-  document.getElementById('segundoNombreValue').innerHTML =
+  document.querySelector('#segundoNombreValue').innerHTML =
     localStorage.getItem('sNombre');
-  document.getElementById('primerApellidoValue').innerHTML =
+  document.querySelector('#primerApellidoValue').innerHTML =
     localStorage.getItem('pApellido');
-  document.getElementById('segundoApellidoValue').innerHTML =
+  document.querySelector('#segundoApellidoValue').innerHTML =
     localStorage.getItem('sApellido');
-  document.getElementById('emailValue').innerHTML =
+  document.querySelector('#emailValue').innerHTML =
     localStorage.getItem('email');
 
-  document.getElementById('nroContactoValue').innerHTML =
+  document.querySelector('#nroContactoValue').innerHTML =
     localStorage.getItem('nroContacto');
 
-  document.getElementById('nameUser').innerHTML = localStorage.getItem('user');
+  document.querySelector('#nameUser').innerHTML = localStorage.getItem('user');
 
   //SI EL USUARIO AUN NO CAMBIO LA IMAGEN DE PERFIL MUESTRO UNA POR DEFECTO
   if (localStorage.getItem('imgUser') === null) {
-    document.getElementById('img-perfil').src = '/img/img_perfil.png';
+    document.querySelector('#img-perfil').src = '/img/img_perfil.png';
   } else {
-    document.getElementById('img-perfil').src = localStorage.getItem('imgUser');
+    document.querySelector('#img-perfil').src = localStorage.getItem('imgUser');
   }
 }
 
