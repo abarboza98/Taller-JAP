@@ -1,8 +1,8 @@
 let CART_URL = CART_INFO_URL + 25801 + EXT_TYPE;
 currentCartArticles = [];
 let envio = document.querySelector('#tipEnvio');
-const dollarPrice = 41;
 let btnBorrar = document.getElementsByClassName('btnBorrar');
+const dollarPrice = 41;
 
 //FUNCION QUE MUESTRA LOS ARTICULOS DEL CARRITO
 function showCart(articleCart) {

@@ -51,9 +51,8 @@ function showProductsList(dataProducts) {
   let htmlContentToAppend = '';
 
   //TITULO DE LA CATEGORIA AL QUE PERTENECEN
-  //document.getElementById('titleProduct').innerHTML = resultObj.data.catName;
-  for (let i = 0; i < dataProducts.length; i++) {
-    let product = dataProducts[i];
+
+  dataProducts.forEach((product) => {
     if (
       (minCost == undefined ||
         (minCost != undefined && parseInt(product.cost) >= minCost)) &&
@@ -95,7 +94,7 @@ function showProductsList(dataProducts) {
         `;
       document.getElementById('listado').innerHTML = htmlContentToAppend;
     }
-  }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
