@@ -8,8 +8,7 @@ const dollarPrice = 41;
 function showCart(articleCart) {
   let htmlContentToAppend = '';
   let subtotal = 0;
-  for (let nroItem = 0; nroItem < articleCart.length; nroItem++) {
-    let articulo = articleCart[nroItem];
+  articleCart.forEach((articulo) => {
     subtotal = subtotal + articulo.unitCost;
     htmlContentToAppend += `
       
@@ -54,7 +53,7 @@ function showCart(articleCart) {
       
       
       `;
-  }
+  });
 
   document.querySelector('#agregarArticulo').innerHTML += htmlContentToAppend;
   totalPrice();
@@ -129,7 +128,6 @@ function removeItem(item) {
 document.addEventListener('DOMContentLoaded', () => {
   getJSONData(CART_URL).then(function (resultObj) {
     if (resultObj.status === 'ok') {
-      // currentCartArticles = resultObj.data.articles;
       currentCartArticles = JSON.parse(localStorage.getItem('myCart'));
 
       //SI NO HAY PRODUCTOS PRECARGADOS EN EL CARRITO MUESTRO UNA ALERTA Y DESHABILITO EL BOTON DE FINALIZAR LA COMPRA

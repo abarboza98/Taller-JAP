@@ -53,9 +53,7 @@ function setCatID(id) {
 
 function showCategoriesList() {
   let htmlContentToAppend = '';
-  for (let i = 0; i < currentCategoriesArray.length; i++) {
-    let category = currentCategoriesArray[i];
-
+  currentCategoriesArray.forEach((category) => {
     if (
       (minCount == undefined ||
         (minCount != undefined &&
@@ -83,7 +81,7 @@ function showCategoriesList() {
 
     document.getElementById('cat-list-container').innerHTML =
       htmlContentToAppend;
-  }
+  });
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray) {

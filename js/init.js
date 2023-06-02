@@ -68,6 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /*CIERRO LA SESION*/
 
-document.getElementById('cerrarSesion').addEventListener('click', function () {
+document.querySelector('#cerrarSesion').addEventListener('click', function () {
   localStorage.clear();
 });
